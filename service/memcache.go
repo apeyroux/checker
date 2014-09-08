@@ -6,12 +6,12 @@ import (
 	"net"
 )
 
-type MemCache struct {
+type MemcacheService struct {
 	Host string `json:"host"`
 	Port int    `json:"port"`
 }
 
-func (mc *MemCache) State() state {
+func (mc *MemcacheService) State() state {
 	uri := fmt.Sprintf("%s:%d", mc.Host, mc.Port)
 	cnx, err := net.Dial("tcp", uri)
 	if err != nil {
@@ -33,11 +33,11 @@ func (mc *MemCache) State() state {
 	return ALIVE
 }
 
-func (mc *MemCache) Name() string {
+func (mc *MemcacheService) Name() string {
 	return "memcache"
 }
 
-func (mc *MemCache) String() string {
+func (mc *MemcacheService) String() string {
 	str := fmt.Sprintf("%s %s:%d", mc.Name(), mc.Host, mc.Port)
 	return str
 }

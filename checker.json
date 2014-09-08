@@ -8,12 +8,20 @@
 		    "host":"10.226.148.159",
 		    "port":80
 		}
-	    },
-	    {
+	    }, {
 		"name":"memcache",
 		"config":{
 		    "host":"127.0.0.1",
 		    "port":11211
+		}
+	    }, {
+		"name":"postgres",
+		"config":{
+		    "host":"127.0.0.1",
+		    "port":5432,
+		    "user":"ja",
+		    "password":"jo",
+		    "db":"dn_ja"
 		}
 	    }
 	]
