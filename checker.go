@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"github.com/communaute-cimi/checker/service"
 	"io/ioutil"
@@ -16,6 +17,10 @@ type Checker struct {
 type Config struct {
 	Checkers []Checker `json:"checkers"`
 }
+
+var (
+	cfg *string = flag.String("config", "checker.json", "config file")
+)
 
 func dispacher(aservice service.Service) service.Serve {
 	switch aservice.Name {
@@ -43,7 +48,10 @@ func dispacher(aservice service.Service) service.Serve {
 }
 
 func main() {
-	cfgbuf, err := ioutil.ReadFile("checker.json")
+
+	flag.Parse()
+
+	cfgbuf, err := ioutil.ReadFile(*cfg)
 	if err != nil {
 		log.Fatal(err)
 	}
